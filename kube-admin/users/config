@@ -1,0 +1,18 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    server: https://10.0.1.214:6443
+  name: kubernetes
+- context:
+    cluster: kubernetes
+    user: kubernetes-user
+  name: kubernetes-user
+current-context: kubernetes-user
+kind: Config
+preferences: {}
+users:
+- name: kubernetes-user
+  user:
+    client-certificate: /home/kubeuser/roles/basic-user.crt
+    client-key: /home/kubeuser/roles/basic-user.key
