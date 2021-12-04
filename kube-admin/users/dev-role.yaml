@@ -4,20 +4,18 @@ metadata:
   name: dev-role
 rules:
 - apiGroups: [""]
-  verbs: [create delete deletecollection get list patch update watch]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "patch", "update", "watch"]
   resources:
   - pods
-  - persistentvolumeclaims
-  - persistentvolumes
   - services
 - apiGroups: ["extensions", "apps" ]
-  verbs: [create delete deletecollection get list patch update watch]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "patch", "update", "watch"]
   resources:
   - deployments
   - replicasets
   - statefulsets  
 - apiGroups: ["batch", "extensions"]
-  verbs: [create delete deletecollection get list patch update watch]
+  verbs: ["create", "delete", "deletecollection", "get", "list", "patch", "update", "watch"]
   resources:
   - jobs
   - cronjobs

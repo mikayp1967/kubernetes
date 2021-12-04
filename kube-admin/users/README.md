@@ -18,6 +18,7 @@ Prob a bit more access than a dev would need but hey ho.
 Pretty much full access on most namespaced resources
 
 To add new roles find the resource name, group and available verbs with:
+
     kubectl api-resources -o wide|grep <resource-name>
 
 ## Rolebinding
