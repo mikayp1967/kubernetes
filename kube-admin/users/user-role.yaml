@@ -4,14 +4,13 @@ metadata:
   name: user-role
 rules:
 - apiGroups: [""]
-  verbs: [get list watch]
+  verbs: ["get", "list", "watch"]
   resources:
   - pods
   - persistentvolumeclaims
-  - persistentvolumes
   - services
 - apiGroups: ["extensions", "apps" ]
-  verbs: [get list watch]
+  verbs: ["get", "list", "watch"]
   resources:
   - deployments  
 - apiGroups: ["batch", "extensions"]

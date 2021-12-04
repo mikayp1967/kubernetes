@@ -1,13 +1,13 @@
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: {{ NAME }}
-  namespace: {{ NS }}
+  name: user-role-binding-bob
+  namespace: default
 subjects:
 - kind: User
-  name: {{ USER }}
+  name: bob
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
-  name: {{ ROLE }}
+  name: user-role
   apiGroup: rbac.authorization.k8s.io
