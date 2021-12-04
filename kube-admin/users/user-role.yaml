@@ -16,6 +16,6 @@ rules:
   - deployments  
 - apiGroups: ["batch", "extensions"]
   verbs: [list]
-    resources:
+  resources:
   - jobs
   - cronjobs

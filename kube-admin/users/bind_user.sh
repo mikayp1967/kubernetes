@@ -8,7 +8,7 @@
 
 
     CA_LOCATION="/etc/kubernetes/pki/"
-    CERT_LOCATION="/var/mycerts/""
+    CERT_LOCATION="/var/mycerts/"
 
     
 
@@ -25,10 +25,12 @@
         NS=$3
     fi        
 
+
+
 # Since when do I make such concessions to readability. Only had 1 coffee so far - that must be it
     cat user-rolebinding.tmpl | \
+        sed "s/{{ NAME }}/user-role-binding-${USER_ID}${NS}/" | \
         sed "s/{{ NS }}/${NS}/" | \
-        sed "s/{{ USER }}/${USER_ID}}/" | \
+        sed "s/{{ USER }}/${USER_ID}/" | \
         sed "s/{{ ROLE }}/${USER_ROLE}/" > user-rolebinding.yaml
     kubectl apply -f user-rolebinding.yaml
-    

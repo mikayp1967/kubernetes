@@ -18,6 +18,6 @@ rules:
   - statefulsets  
 - apiGroups: ["batch", "extensions"]
   verbs: [create delete deletecollection get list patch update watch]
-    resources:
+  resources:
   - jobs
   - cronjobs
