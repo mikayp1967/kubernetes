@@ -1,21 +1,23 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: user-role
+  name: dev-role
 rules:
 - apiGroups: [""]
-  verbs: [get list watch]
+  verbs: [create delete deletecollection get list patch update watch]
   resources:
   - pods
   - persistentvolumeclaims
   - persistentvolumes
   - services
 - apiGroups: ["extensions", "apps" ]
-  verbs: [get list watch]
+  verbs: [create delete deletecollection get list patch update watch]
   resources:
-  - deployments  
+  - deployments
+  - replicasets
+  - statefulsets  
 - apiGroups: ["batch", "extensions"]
-  verbs: [list]
+  verbs: [create delete deletecollection get list patch update watch]
     resources:
   - jobs
   - cronjobs
