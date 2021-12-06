@@ -12,7 +12,7 @@ image:
 
 # Lets create some secrets
 imagePullSecrets:
-  - mysecret
+  - name: mysecret
 
 nameOverride: ""
 fullnameOverride: ""
@@ -86,5 +86,5 @@ tolerations: []
 affinity: {}
 
 # Additional parameters
-NAMESPACE: default
+NAMESPACE: testing
 CC: dev

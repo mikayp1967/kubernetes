@@ -40,9 +40,9 @@ helm.sh/chart: {{ include "simple-chart.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-application: "{{ .Chart.Name }}"
 environment: "{{ .Values.NAMESPACE }}"
 costcentre: "{{ .Values.CC }}"
+application: "{{ .Chart.Name }}"
 {{- end }}
 
 
