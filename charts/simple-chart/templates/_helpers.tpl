@@ -40,7 +40,12 @@ helm.sh/chart: {{ include "simple-chart.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+application: "{{ .Chart.Name }}"
+environment: "{{ .Values.NAMESPACE }}"
+costcentre: "{{ .Values.CC }}"
 {{- end }}
+
+
 
 {{/*
 Selector labels
@@ -49,6 +54,8 @@ Selector labels
 app.kubernetes.io/name: {{ include "simple-chart.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+
+
 
 {{/*
 Create the name of the service account to use
