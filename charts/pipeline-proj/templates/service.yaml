@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "simple-chart.fullname" . }}
-  namespace: "{{ .Values.NAMESPACE }}"  
+  name: {{ include "pipeline-proj.fullname" . }}
   labels:
-    {{- include "simple-chart.labels" . | nindent 4 }}
+    {{- include "pipeline-proj.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -13,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "simple-chart.selectorLabels" . | nindent 4 }}
+    {{- include "pipeline-proj.selectorLabels" . | nindent 4 }}

@@ -44,8 +44,9 @@ case $MODE in
     printf "\n"
     printf "Help message.\n\nmake-ns.sh [flag]\n"
     printf "    -c|create        Create namespaces\n"
-    printf "    -c|delete|del    Delete namespaces\n"
-    printf "    -l|list          List namespaces\n"
+    printf "    -d|delete|del    Delete namespaces\n"
+    printf "    -l|list          List namespaces & status\n"
+    printf "    -h|help          Help message\n"
     ;;
     create)
     for N_S in "${NS_LIST[@]}"; do
@@ -62,8 +63,8 @@ case $MODE in
     list)
     printf "Namespaces managed by this script:\n"
     for N_S in "${NS_LIST[@]}"; do
-	    STATUS=$(kubectl get ns $N_S -o jsonpath='{.status.phase}' 2>/dev/null )
-	    if [[ "$STATUS" == "" ]]; then STATUS="* ABSENT *"; fi
+           STATUS=$(kubectl get ns $N_S -o jsonpath='{.status.phase}' 2>/dev/null )
+           if [[ "$STATUS" == "" ]]; then STATUS="* ABSENT *"; fi
         printf "    $N_S \t\t ${STATUS} \n"
     done
     ;;

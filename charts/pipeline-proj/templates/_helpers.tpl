@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "simple-chart.name" -}}
+{{- define "pipeline-proj.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "simple-chart.fullname" -}}
+{{- define "pipeline-proj.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,43 +26,36 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "simple-chart.chart" -}}
+{{- define "pipeline-proj.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "simple-chart.labels" -}}
-helm.sh/chart: {{ include "simple-chart.chart" . }}
-{{ include "simple-chart.selectorLabels" . }}
+{{- define "pipeline-proj.labels" -}}
+helm.sh/chart: {{ include "pipeline-proj.chart" . }}
+{{ include "pipeline-proj.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-environment: "{{ .Values.NAMESPACE }}"
-costcentre: "{{ .Values.CC }}"
-application: "{{ .Chart.Name }}"
 {{- end }}
-
-
 
 {{/*
 Selector labels
 */}}
-{{- define "simple-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "simple-chart.name" . }}
+{{- define "pipeline-proj.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "pipeline-proj.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "simple-chart.serviceAccountName" -}}
+{{- define "pipeline-proj.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "simple-chart.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "pipeline-proj.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
