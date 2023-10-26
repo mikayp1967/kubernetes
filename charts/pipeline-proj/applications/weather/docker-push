@@ -1,0 +1,9 @@
+# DL needs to be set to the dockerhub username, DP=Dockerhub password
+# This will be the push stage of an app build pipeline - tag the new version of the app as supplied version and latest then push it. 
+
+export APP_VER="1.0.0"
+docker tag weather:latest randomtree4/weather:${APP_VER}
+docker tag weather:latest randomtree4/weather:latest
+docker login -u $DL -p $DP
+docker push randomtree4/weather:${APP_VER}
+docker push randomtree4/weather:latest

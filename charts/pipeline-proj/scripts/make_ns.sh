@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# I know I can stack modes, just leaving that in for future flexibility to add switches
+# Create or delete a load of K8s namespaces for test purposes. 
+
+
 
 NS_LIST=(
     "dev1"
@@ -14,6 +16,7 @@ NS_LIST=(
     "prod"
 )
 
+# I know I can have multiple modes that overwrite each other, just leaving that in for future flexibility to add switches
 MODE="help"
 while [[ $# -gt 0 ]]
 do
