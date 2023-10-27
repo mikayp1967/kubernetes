@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: randomtree4/weather
+  tag: ""
+
+service:
+  type: ClusterIP
+  port: 9081
+
+resources: 
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
