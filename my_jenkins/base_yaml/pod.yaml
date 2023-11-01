@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jenkins-master
+spec:
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        claimName: task-pv-claim
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+  containers:
+    - name: jenkins-master-container
+      image: jenkins/jenkins:lts-jdk17
+      ports:
+        - containerPort: 8080
+          name: "jenkins-server"
+      volumeMounts:
+        - mountPath: "/var/jenkins_home"
+          name: task-pv-storage
+  initContainers:
+    - name: volume-mount-ownership
+      image: busybox
+      command: ["sh", "-c", "chown 1000:1000 /tmp/jenkins_home/"]
+      volumeMounts:
+      - name: task-pv-storage
+        mountPath: "/tmp/jenkins_home"
+      securityContext:
+        runAsUser: 0

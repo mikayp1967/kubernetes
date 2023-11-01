@@ -6,7 +6,7 @@ image:
 
 service:
   type: ClusterIP
-  port: 9086
+  port: 80
 
 resources: 
   limits:

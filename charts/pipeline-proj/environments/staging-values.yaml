@@ -10,15 +10,15 @@ service:
 
 resources: 
   limits:
-    cpu: 500m
-    memory: 192Mi
+    cpu: 100m
+    memory: 128Mi
   requests:
-    cpu: 200m
+    cpu: 100m
     memory: 128Mi
 
 autoscaling:
   enabled: false
-  minReplicas: 2
+  minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
