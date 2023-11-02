@@ -46,6 +46,16 @@ spec:
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+      initContainers:
+        - name: "{{ .Chart.Name }}-init"
+          image: busybox
+          command: ["sh", "-c", "chown 1000:1000 /var/jenkins_home/"]
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          securityContext:
+            runAsUser: 0
       {{- with .Values.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
@@ -54,6 +64,13 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
+        - effect: NoSchedule
+          key: node.kubernetes.io/disk-pressure
+          operator: Exists
       {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

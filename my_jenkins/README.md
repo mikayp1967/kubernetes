@@ -10,8 +10,14 @@
 
 ## To Do
 
-- Add PVC to deployment
-- Add Init Container to deployment to configure persistent volume permissions
-- Tolerations to run it on CP
+- Add PVC to deployment - DONE
+- Add Init Container to deployment to configure persistent volume permissions - DONE
+- Tolerations to run it on CP - Pushing now to save changes, fails on master node cos of disk issues.
 - External service IP address
+
+
+## Installing
+
+cd my_jenkins
+helm upgrade --install  jenkins .
 

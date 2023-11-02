@@ -40,7 +40,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  #type: ClusterIP
+  type: NodePort
   port: 8080
 
 ingress:
@@ -79,20 +80,35 @@ autoscaling:
   # targetMemoryUtilizationPercentage: 80
 
 # Additional volumes on the output Deployment definition.
-volumes: []
+volumes: 
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
+- name: jenkins-pv-storage
+  persistentVolumeClaim:
+    claimName: jenkins-pv-claim
+volumeMounts:
+- mountPath: "/var/jenkins_home"
+  name: jenkins-pv-storage
+
 
 
 nodeSelector: {}
 
 tolerations: []
 
-affinity: {}
+affinity: 
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchFields:
+        - key: metadata.name
+          operator: In
+          values:
+          - master-node
 
 # Storage parameters
-storageSize: 1Gi
+storageSize: 300Mi
 storagePath: "/var/jenkins_home"
 
