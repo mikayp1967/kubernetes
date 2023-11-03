@@ -109,6 +109,6 @@ affinity:
           - master-node
 
 # Storage parameters
-storageSize: 300Mi
+storageSize: 500Mi
 storagePath: "/var/jenkins_home"
 

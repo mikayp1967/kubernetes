@@ -1,5 +1,9 @@
 # Jenkins Server
 
+Create a helm chart to build a minimally functional Jenkins server. This isn't the goal, just a pre-requisite for creating pipelines.
+And on that note - guess it's done enough for now.
+
+
 ## Objectives
 
 - Create a jenkins server running persistently
@@ -12,7 +16,7 @@
 
 - Add PVC to deployment - DONE
 - Add Init Container to deployment to configure persistent volume permissions - DONE
-- Tolerations to run it on CP - Pushing now to save changes, fails on master node cos of disk issues.
+- Tolerations to run it on CP - DONE
 - External service IP address
 
 
